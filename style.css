@@ -1,0 +1,259 @@
+:root {
+  /* Theme 1 */
+  /*-- Background */
+  --th-1-main-bg: hsl(222, 26%, 31%);
+  --th-1-toggle-bg: hsl(223, 31%, 20%);
+  --th-1-screen-bg: hsl(224, 36%, 15%);
+  /*-- Keys */
+  --th-1-key-bg-alt: hsl(225, 21%, 49%); /* key background */
+  --th-1-key-press-bg-alt: hsl(224, 51%, 76%); /* key pressed background */
+  --th-1-key-sh-alt: hsl(224, 28%, 35%); /* key shadow */
+  --th-1-eq-toggle-bg: hsl(6, 63%, 50%); /* key background, toggle */
+  --th-1-eq-toggle-press-bg: hsl(6, 93%, 67%); /* key pressed background */
+  --th-1-eq-sh: hsl(6, 70%, 34%); /* key shadow */
+  --th-1-key-bg-main: hsl(30, 25%, 89%); /* key background */
+  --th-1-key-press-bg-main: rgb(255 255 255); /* key press background */
+  --th-1-key-sh-main: hsl(28, 16%, 65%); /* key shadow */
+  /*-- Text */
+  --th-1-text: hsl(221, 14%, 31%);
+  --th-1-text-eq: hsl(0, 0%, 100%);
+  --th-1-text-input: hsl(0, 0%, 100%);
+  --white: hsl(0, 0%, 100%);
+
+  /* Theme 2 */
+  /*-- Background */
+  --th-2-main-bg: hsl(0, 0%, 90%); /* main background */
+  --th-2-toggle-bg: hsl(0, 5%, 81%); /* toggle background, keypad background */
+  --th-2-screen-bg: hsl(0, 0%, 93%); /* screen background */
+  /*-- Keys */
+  --th-2-key-bg-alt: hsl(185, 42%, 37%); /* key background */
+  --th-2-key-press-bg-alt: hsl(185, 42%, 37%); /* key pressed background */
+  --th-2-key-sh-alt: hsl(185, 58%, 25%); /* key shadow */
+  --th-2-eq-toggle-bg: hsl(25, 98%, 40%); /* key background, toggle */
+  --th-2-eq-sh: hsl(25, 99%, 27%); /* key shadow */
+  --th-2-key-bg-main: hsl(45, 7%, 89%); /* key background */
+  --th-2-key-sh-main: hsl(35, 11%, 61%); /* key shadow */
+  /*-- Text */
+  --th-2-text: hsl(60, 10%, 19%);
+  --th-2-text-eq: hsl(0, 0%, 100%);
+  --th-2-text-input: hsl(60, 10%, 19%);
+  --white: hsl(0, 0%, 100%);
+
+  /* Theme 3 */
+  /*-- Background */
+  --th-3-main-bg: hsl(268, 75%, 9%); /* main background */
+  --th-3-toggle-bg: hsl(
+    268,
+    71%,
+    12%
+  ); /* toggle background, keypad background */
+  --th-3-screen-bg: hsl(268, 71%, 12%); /* screen background */
+  /*-- Keys */
+  --th-3-key-bg-alt: hsl(281, 89%, 26%); /* key background */
+  --th-3-key-press-bg-alt: hsl(281, 89%, 26%); /* key pressed background */
+  --th-3-key-sh-alt: hsl(285, 91%, 52%); /* key shadow */
+  --th-3-eq-toggle-bg: hsl(176, 100%, 44%); /* key background, toggle */
+  --th-3-eq-sh: hsl(177, 92%, 70%); /* key shadow */
+  --th-3-key-bg-main: hsl(268, 47%, 21%); /* key background */
+  --th-3-key-sh-main: hsl(290, 70%, 36%); /* key shadow */
+  /*-- Text */
+  --th-3-text: hsl(52, 100%, 62%);
+  --th-3-text-eq: hsl(198, 20%, 13%);
+  --th-3-text-input: hsl(52, 100%, 62%);
+  --white: hsl(0, 0%, 100%);
+
+  /* Font Size */
+  --numbers: 32px;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+input,
+button {
+  border: none;
+  outline: none;
+}
+
+@media (max-width: 374px) {
+  .calc {
+    width: 320px;
+    height: 500px;
+    padding: 20px 15px;
+  }
+}
+@media (min-width: 375px) {
+  .calc {
+    width: 375px;
+    height: 660px;
+    padding: 30px 20px;
+  }
+}
+@media (min-width: 500px) {
+  .calc {
+    width: 500px;
+    height: 700px;
+  }
+}
+
+body {
+  font-family: "League Spartan", sans-serif;
+  background-color: var(--th-1-main-bg);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calc {
+  min-width: 320px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  /* flex-basis: 20%; */
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--th-1-text-input);
+}
+.header .title {
+  transform: translateY(8px);
+}
+.header .themes {
+  display: flex;
+  align-items: flex-end;
+  gap: 25px;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+.header .themes .options {
+  display: flex;
+  justify-content: space-around;
+}
+.header .themes .switch {
+  position: relative;
+  width: 80px;
+  height: 30px;
+  margin-top: 5px;
+  background-color: var(--th-1-toggle-bg);
+  border-radius: 30px;
+  cursor: pointer;
+}
+.header .themes .switch::before {
+  content: "themes";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: calc(100% + 25px);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.1px;
+}
+.header .themes .switch .toggle {
+  content: "";
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: var(--th-1-eq-toggle-bg);
+  position: absolute;
+  left: calc(0px + 6px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+input {
+  background-color: var(--th-1-screen-bg);
+  padding: 40px;
+  border-radius: 10px;
+  color: var(--th-1-text-input);
+  font-size: calc(var(--numbers) * 2);
+  direction: rtl;
+  font-weight: 700;
+  margin-bottom: 30px;
+  font-family: inherit;
+}
+
+.inputs {
+  flex-basis: 100%;
+  background-color: var(--th-1-toggle-bg);
+  padding: 30px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  border-radius: 10px;
+}
+.inputs button {
+  background-color: var(--th-1-key-bg-main);
+  box-shadow: 0 5px 0 0 var(--th-1-key-sh-main);
+  border-radius: 10px;
+  font-size: var(--numbers);
+  /* padding: 10px 15px; */
+  color: var(--th-1-text);
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+}
+.inputs button[value="reset"],
+.inputs button[value="="] {
+  grid-column: span 2;
+}
+.inputs button[value="reset"],
+.inputs button[value="del"] {
+  background-color: var(--th-1-key-bg-alt);
+  box-shadow: 0 5px 0 0 var(--th-1-key-sh-alt);
+  font-size: 25px;
+  text-transform: uppercase;
+}
+.inputs button[value="del"],
+.inputs button[value="reset"] {
+  color: var(--white);
+}
+
+.inputs button[value="="] {
+  background-color: var(--th-1-eq-toggle-bg);
+  box-shadow: 0 5px 0 0 var(--th-1-eq-sh);
+  color: var(--white);
+}
+
+@media (min-width: 320px) {
+  input {
+    flex-basis: 80px;
+    padding: 20px;
+    font-size: calc(var(--numbers) * 0.7);
+    margin-bottom: 20px;
+  }
+  .inputs {
+    padding: 15px;
+    gap: 15px 10px;
+    font-size: calc(var(--numbers) * 1);
+  }
+}
+@media (min-width: 375px) {
+  input {
+    flex-basis: 120px;
+    font-size: calc(var(--numbers) * 1);
+    padding: 30px;
+    margin-bottom: 25px;
+  }
+  .inputs {
+    gap: 15px 10px;
+    padding: 20px;
+  }
+  .inputs button[value="="],
+  .inputs button[value="del"],
+  .inputs button[value="reset"] {
+    font-size: 20px;
+  }
+}
+@media (min-width: 500px) {
+  .inputs {
+    gap: 25px 20px;
+    padding: 30px;
+  }
+}
