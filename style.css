@@ -12,13 +12,12 @@
   --th-1-eq-toggle-press-bg: hsl(6, 93%, 67%); /* key pressed background */
   --th-1-eq-sh: hsl(6, 70%, 34%); /* key shadow */
   --th-1-key-bg-main: hsl(30, 25%, 89%); /* key background */
-  --th-1-key-press-bg-main: rgb(255 255 255); /* key press background */
+  --th-1-key-press-bg-main: rgb(255 255 255); /* key pressed background */
   --th-1-key-sh-main: hsl(28, 16%, 65%); /* key shadow */
   /*-- Text */
   --th-1-text: hsl(221, 14%, 31%);
   --th-1-text-eq: hsl(0, 0%, 100%);
   --th-1-text-input: hsl(0, 0%, 100%);
-  --white: hsl(0, 0%, 100%);
 
   /* Theme 2 */
   /*-- Background */
@@ -27,17 +26,18 @@
   --th-2-screen-bg: hsl(0, 0%, 93%); /* screen background */
   /*-- Keys */
   --th-2-key-bg-alt: hsl(185, 42%, 37%); /* key background */
-  --th-2-key-press-bg-alt: hsl(185, 42%, 37%); /* key pressed background */
+  --th-2-key-press-bg-alt: hsl(184, 42%, 56%); /* key pressed background */
   --th-2-key-sh-alt: hsl(185, 58%, 25%); /* key shadow */
   --th-2-eq-toggle-bg: hsl(25, 98%, 40%); /* key background, toggle */
+  --th-2-eq-toggle-press-bg: hsl(25, 100%, 61%); /* key pressed background, */
   --th-2-eq-sh: hsl(25, 99%, 27%); /* key shadow */
   --th-2-key-bg-main: hsl(45, 7%, 89%); /* key background */
+  --th-2-key-press-bg-main: hsl(0, 0%, 100%); /* key pressed background */
   --th-2-key-sh-main: hsl(35, 11%, 61%); /* key shadow */
   /*-- Text */
   --th-2-text: hsl(60, 10%, 19%);
   --th-2-text-eq: hsl(0, 0%, 100%);
   --th-2-text-input: hsl(60, 10%, 19%);
-  --white: hsl(0, 0%, 100%);
 
   /* Theme 3 */
   /*-- Background */
@@ -50,20 +50,25 @@
   --th-3-screen-bg: hsl(268, 71%, 12%); /* screen background */
   /*-- Keys */
   --th-3-key-bg-alt: hsl(281, 89%, 26%); /* key background */
-  --th-3-key-press-bg-alt: hsl(281, 89%, 26%); /* key pressed background */
+  --th-3-key-press-bg-alt: hsl(280, 56%, 44%); /* key pressed background */
   --th-3-key-sh-alt: hsl(285, 91%, 52%); /* key shadow */
   --th-3-eq-toggle-bg: hsl(176, 100%, 44%); /* key background, toggle */
+  --th-3-eq-toggle-press-bg: hsl(177, 100%, 79%); /* key pressed background */
   --th-3-eq-sh: hsl(177, 92%, 70%); /* key shadow */
   --th-3-key-bg-main: hsl(268, 47%, 21%); /* key background */
+  --th-3-key-press-bg-main: hsl(268, 54%, 44%); /* key pressed background */
   --th-3-key-sh-main: hsl(290, 70%, 36%); /* key shadow */
   /*-- Text */
   --th-3-text: hsl(52, 100%, 62%);
   --th-3-text-eq: hsl(198, 20%, 13%);
   --th-3-text-input: hsl(52, 100%, 62%);
-  --white: hsl(0, 0%, 100%);
 
   /* Font Size */
   --numbers: 32px;
+
+  /* General */
+  --white: hsl(0, 0%, 100%);
+  --font-family: "League Spartan", sans-serif;
 }
 
 * {
@@ -100,7 +105,7 @@ button {
 }
 
 body {
-  font-family: "League Spartan", sans-serif;
+  font-family: var(--font-family);
   background-color: var(--th-1-main-bg);
   height: 100vh;
   display: flex;
@@ -129,7 +134,7 @@ body {
   display: flex;
   align-items: flex-end;
   gap: 25px;
-  font-size: 18px;
+  font-size: 14px;
   text-transform: uppercase;
 }
 .header .themes .options {
@@ -162,9 +167,10 @@ body {
   border-radius: 50%;
   background-color: var(--th-1-eq-toggle-bg);
   position: absolute;
-  left: calc(0px + 6px);
+  left: calc(0% + 6px);
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate(0%, -50%);
+  transition: 0.3s;
 }
 
 input {
@@ -218,7 +224,7 @@ input {
 .inputs button[value="="] {
   background-color: var(--th-1-eq-toggle-bg);
   box-shadow: 0 5px 0 0 var(--th-1-eq-sh);
-  color: var(--white);
+  color: var(--th-1-text-eq);
 }
 
 @media (min-width: 320px) {
