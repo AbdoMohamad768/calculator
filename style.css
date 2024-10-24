@@ -205,11 +205,11 @@ input {
   font-family: inherit;
   cursor: pointer;
 }
-.inputs button[value="reset"],
-.inputs button[value="="] {
+.inputs button[value="res"],
+.inputs button[value="eq"] {
   grid-column: span 2;
 }
-.inputs button[value="reset"],
+.inputs button[value="res"],
 .inputs button[value="del"] {
   background-color: var(--th-1-key-bg-alt);
   box-shadow: 0 5px 0 0 var(--th-1-key-sh-alt);
@@ -217,11 +217,11 @@ input {
   text-transform: uppercase;
 }
 .inputs button[value="del"],
-.inputs button[value="reset"] {
+.inputs button[value="res"] {
   color: var(--white);
 }
 
-.inputs button[value="="] {
+.inputs button[value="eq"] {
   background-color: var(--th-1-eq-toggle-bg);
   box-shadow: 0 5px 0 0 var(--th-1-eq-sh);
   color: var(--th-1-text-eq);
@@ -251,9 +251,9 @@ input {
     gap: 15px 10px;
     padding: 20px;
   }
-  .inputs button[value="="],
+  .inputs button[value="eq"],
   .inputs button[value="del"],
-  .inputs button[value="reset"] {
+  .inputs button[value="res"] {
     font-size: 20px;
   }
 }

@@ -1,3 +1,5 @@
+"use strict";
+
 const switch_inp = document.querySelector(".switch");
 const screen_inp = document.querySelector(".screen");
 const inputs_container = document.querySelector(".inputs");
@@ -11,39 +13,223 @@ let firstNum = 0;
 let secondNum = 0;
 
 const calculate = function (firstNum, type, secondNum) {
-  console.log("Calculating...");
-  console.log(`${firstNum} ${type} ${secondNum}`);
+  if (type === "sum") return firstNum + secondNum;
+  if (type === "sub") return firstNum - secondNum;
+  if (type === "mul") return firstNum * secondNum;
+  if (type === "div") return firstNum / secondNum;
+};
 
-  if (type === "+") return firstNum + secondNum;
-  if (type === "-") return firstNum - secondNum;
-  if (type === "x") return firstNum * secondNum;
-  if (type === "/") return firstNum / secondNum;
+const changeColor = function (key, pressed = false) {
+  switch (key) {
+    case "Delete":
+    case "del":
+    case "Backspace":
+      document.querySelector(
+        `.btn-del`
+      ).style.backgroundColor = `var(--th-${theme}-key-${
+        pressed ? "press-" : ""
+      }bg-alt)`;
+      break;
+
+    case "r":
+    case "res":
+    case "R":
+      document.querySelector(
+        `.btn-res`
+      ).style.backgroundColor = `var(--th-${theme}-key-${
+        pressed ? "press-" : ""
+      }bg-alt)`;
+      break;
+
+    case "=":
+    case "e":
+    case "eq":
+    case "E":
+    case "Enter":
+      document.querySelector(
+        `.btn-eq`
+      ).style.backgroundColor = `var(--th-${theme}-eq-toggle-${
+        pressed ? "press-" : ""
+      }bg)`;
+      break;
+
+    case "0":
+    case "1":
+    case "2":
+    case "3":
+    case "4":
+    case "5":
+    case "6":
+    case "7":
+    case "8":
+    case "9":
+      document.querySelector(
+        `.btn-${key}`
+      ).style.backgroundColor = `var(--th-${theme}-key-${
+        pressed ? "press-" : ""
+      }bg-main)`;
+      break;
+
+    case ".":
+    case "frac":
+      document.querySelector(
+        `.btn-frac`
+      ).style.backgroundColor = `var(--th-${theme}-key-${
+        pressed ? "press-" : ""
+      }bg-main)`;
+      break;
+
+    case "+":
+    case "p":
+    case "P":
+    case "s":
+    case "sum":
+      document.querySelector(
+        `.btn-sum`
+      ).style.backgroundColor = `var(--th-${theme}-key-${
+        pressed ? "press-" : ""
+      }bg-main)`;
+      break;
+
+    case "-":
+    case "m":
+    case "M":
+    case "S":
+    case "sub":
+      document.querySelector(
+        `.btn-sub`
+      ).style.backgroundColor = `var(--th-${theme}-key-${
+        pressed ? "press-" : ""
+      }bg-main)`;
+      break;
+
+    case "/":
+    case "d":
+    case "D":
+    case "div":
+      document.querySelector(
+        `.btn-div`
+      ).style.backgroundColor = `var(--th-${theme}-key-${
+        pressed ? "press-" : ""
+      }bg-main)`;
+      break;
+
+    case "*":
+    case "x":
+    case "X":
+    case "t":
+    case "T":
+    case "mul":
+      document.querySelector(
+        `.btn-mul`
+      ).style.backgroundColor = `var(--th-${theme}-key-${
+        pressed ? "press-" : ""
+      }bg-main)`;
+      break;
+  }
+};
+
+const handleButtonPress = function (btnValue) {
+  switch (btnValue) {
+    case "0":
+    case "1":
+    case "2":
+    case "3":
+    case "4":
+    case "5":
+    case "6":
+    case "7":
+    case "8":
+    case "9": {
+      putInNumber(btnValue);
+      break;
+    }
+
+    case ".":
+    case "frac": {
+      putInNumber(".");
+      break;
+    }
+
+    case "r":
+    case "res":
+    case "R": {
+      resetScreen();
+      resetNumbers();
+      break;
+    }
+
+    case "Delete":
+    case "del":
+    case "Backspace": {
+      delete1NumberFrom();
+      break;
+    }
+
+    case "+":
+    case "p":
+    case "P":
+    case "s":
+    case "sum": {
+      addOperation("sum");
+      break;
+    }
+    case "-":
+    case "m":
+    case "M":
+    case "S":
+    case "sub": {
+      addOperation("sub");
+      break;
+    }
+    case "*":
+    case "x":
+    case "X":
+    case "t":
+    case "T":
+    case "mul": {
+      addOperation("mul");
+      break;
+    }
+    case "/":
+    case "D":
+    case "d":
+    case "div": {
+      addOperation("div");
+      break;
+    }
+
+    case "=":
+    case "e":
+    case "E":
+    case "eq":
+    case "Enter": {
+      getResult();
+
+      resetNumbers();
+      break;
+    }
+  }
 };
 
 const resetNumbers = function () {
   firstNum = 0;
   secondNum = 0;
 };
-const resetColors = function (e) {
-  switch (e.target.value) {
-    case "del":
-    case "reset":
-      e.target.style.backgroundColor = `var(--th-${theme}-key-bg-alt)`;
-      break;
 
-    case "=":
-      e.target.style.backgroundColor = `var(--th-${theme}-eq-toggle-bg)`;
-      break;
-
-    default:
-      e.target.style.backgroundColor = `var(--th-${theme}-key-bg-main)`;
-      break;
-  }
+const changeToggleColor = function () {
+  switch_inp.firstElementChild.style.backgroundColor = `var(--th-${theme}-eq-toggle-press-bg)`;
 };
 const resetSwitchColors = function () {
   switch_inp.firstElementChild.style.backgroundColor = `var(--th-${theme}-eq-toggle-bg)`;
 };
 
+const switchTheme = function () {
+  changeTheme(theme);
+  moveToggle(theme);
+
+  resetSwitchColors();
+};
 const changeTheme = function (themeNum) {
   // Main Background
   document.querySelector(
@@ -74,10 +260,10 @@ const changeTheme = function (themeNum) {
   // Keys
   inputs_container.querySelectorAll("button").forEach((button) => {
     // ${themeNum}
-    if (button.value === "del" || button.value === "reset") {
+    if (button.value === "del" || button.value === "res") {
       button.style.backgroundColor = `var(--th-${themeNum}-key-bg-alt)`;
       button.style.boxShadow = `0 5px 0 0 var(--th-${themeNum}-key-sh-alt)`;
-    } else if (button.value === "=") {
+    } else if (button.value === "eq") {
       button.style.backgroundColor = `var(--th-${themeNum}-eq-toggle-bg)`;
       button.style.boxShadow = `0 5px 0 0 var(--th-${themeNum}-eq-sh)`;
       button.style.color = `var(--th-${themeNum}-text-eq)`;
@@ -141,15 +327,13 @@ const getResult = function () {
 };
 
 switch_inp.addEventListener("mousedown", function (e) {
-  switch_inp.firstElementChild.style.backgroundColor = `var(--th-${theme}-eq-toggle-press-bg)`;
+  changeToggleColor();
 });
-switch_inp.addEventListener("mouseup", function (e) {
+switch_inp.addEventListener("mouseup", function () {
   ++theme;
   if (theme === 4) theme = 1;
-  changeTheme(theme);
-  moveToggle(theme);
 
-  resetSwitchColors();
+  switchTheme();
 });
 switch_inp.addEventListener("mouseout", function (e) {
   resetSwitchColors();
@@ -158,71 +342,48 @@ switch_inp.addEventListener("mouseout", function (e) {
 inputs_container.addEventListener("mousedown", function (e) {
   if (e.target.classList.contains("inputs")) return;
 
-  switch (e.target.value) {
-    case "del":
-    case "reset":
-      e.target.style.backgroundColor = `var(--th-${theme}-key-press-bg-alt)`;
-      break;
-
-    case "=":
-      e.target.style.backgroundColor = `var(--th-${theme}-eq-toggle-press-bg)`;
-      break;
-
-    default:
-      e.target.style.backgroundColor = `var(--th-${theme}-key-press-bg-main)`;
-      break;
-  }
+  changeColor(e.target.value, true);
 });
 inputs_container.addEventListener("mouseup", function (e) {
   if (e.target.classList.contains("inputs")) return;
 
-  switch (e.target.value) {
-    case "0":
-    case "1":
-    case "2":
-    case "3":
-    case "4":
-    case "5":
-    case "6":
-    case "7":
-    case "8":
-    case "9":
-    case ".": {
-      putInNumber(e.target.value);
-      break;
-    }
+  handleButtonPress(e.target.value);
 
-    case "reset": {
-      resetScreen();
-      resetNumbers();
-      break;
-    }
-
-    case "del": {
-      delete1NumberFrom();
-      break;
-    }
-
-    case "+":
-    case "-":
-    case "x":
-    case "/": {
-      addOperation(e.target.value);
-      break;
-    }
-
-    case "=": {
-      getResult();
-
-      resetNumbers();
-      break;
-    }
-  }
-
-  resetColors(e);
+  changeColor(e.target.value);
 });
 inputs_container.addEventListener("mouseout", function (e) {
   if (e.target.classList.contains("inputs")) return;
 
-  resetColors(e);
+  changeColor(e.target.value);
+});
+
+document.addEventListener("keydown", function (e) {
+  changeColor(e.key, true);
+
+  // console.log(e);
+  if (e.key === "!" || e.key === "@" || e.key === "#" || e.key === "Control")
+    changeToggleColor();
+});
+document.addEventListener("keyup", function (e) {
+  handleButtonPress(e.key);
+  changeColor(e.key);
+
+  if (e.key === "!") {
+    theme = 1;
+    switchTheme();
+  }
+  if (e.key === "@") {
+    theme = 2;
+    switchTheme();
+  }
+  if (e.key === "#") {
+    theme = 3;
+    switchTheme();
+  }
+  if (e.key === "Control") {
+    ++theme;
+    if (theme === 4) theme = 1;
+
+    switchTheme();
+  }
 });
