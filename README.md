@@ -26,8 +26,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [calculator.app](me-the-machine-boy.netlify.app)
+- Solution URL: [Add solution URL here](your-solution-url.com)
+- Live Site URL: [calculator.app](https://me-the-machine-boy.netlify.app)
 
 ## My process
 
